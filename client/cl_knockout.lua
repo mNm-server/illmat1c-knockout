@@ -27,7 +27,7 @@ function RegenHealth()
             else
                 break
             end
-            Wait(Config.HealthRegen.HeathTick * 1000)
+            Wait(Config.HealthRegen.HeathTimeTick * 1000)
         end
     end)
 end
