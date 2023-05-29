@@ -1,5 +1,6 @@
 local knockedOut = false
 local wait = 0
+local RegeningHealth = false
 local sleep = 1
 
 function DrawText(str, x, y, w, h, enableShadow, col1, col2, col3, a, centre)
@@ -12,6 +13,23 @@ function DrawText(str, x, y, w, h, enableShadow, col1, col2, col3, a, centre)
     end
     Citizen.InvokeNative(0xADA9255D, 10);
     DisplayText(str, x, y)
+end
+
+function RegenHealth()
+    CreateThread(function ()
+        while true do
+            if RegeningHealth then
+                if GetEntityHealth(PlayerPedId()) <= Config.HealthRegen.MaxHealthToStopRegen then
+                    SetEntityHealth(PlayerPedId(), GetEntityHealth(PlayerPedId()) + Config.HealthRegen.HealthPerTick)
+                else
+                    RegeningHealth = false
+                end
+            else
+                break
+            end
+            Wait(Config.HealthRegen.HeathTick * 1000)
+        end
+    end)
 end
 
 function KnockedOut()
@@ -32,8 +50,9 @@ function KnockedOut()
                 if wait >= 0 then
                     wait = wait - 1
                     if Config.HealthRegen.Active then
-                        if GetEntityHealth(PlayerPedId()) <= Config.HealthRegen.MinHealthToStartRegen then
-                            SetEntityHealth(PlayerPedId(), GetEntityHealth(PlayerPedId())+2)
+                        if GetEntityHealth(PlayerPedId()) <= Config.HealthRegen.MinHealthToStartRegen and not RegeningHealth then
+                            RegeningHealth = true
+                            RegenHealth()
                         end
                     end
                 else
