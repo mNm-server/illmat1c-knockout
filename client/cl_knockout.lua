@@ -78,7 +78,9 @@ CreateThread(function()
         if IsPedInMeleeCombat(PlayerPedId()) then
             if Citizen.InvokeNative(0xDCF06D0CDFF68424, PlayerPedId(), GetHashKey("WEAPON_UNARMED"), 0) then
                 if GetEntityHealth(PlayerPedId()) < Config.KnockedOut.MinHealthToBeKnockedOut and not knockedOut then
-                    ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 2.5)
+                    if Config.KnockedOut.AddedScreenEffect then
+                        ShakeGameplayCam(Config.KnockedOut.AddedScreenEffect, Config.KnockedOut.AddedEffectIntensity)
+                    end
                     knockedOut = true
                     wait = math.random(Config.KnockedOut.KnockedOutTimeMin,Config.KnockedOut.KnockedOutTimeMax) * 100
                     KnockedOut()

@@ -10,6 +10,8 @@ Config.HealthRegen = {
 
 Config.KnockedOut = {
     RandomChance = true,            -- true / false - if true, once a player reaches the MinHealthToBeKnockedOut, knockouts can happen. If false, knockout will occur on first hit after players reached MinHealthToBeKnockedOut
+    AddedScreenEffect = 'LARGE_EXPLOSION_SHAKE',    -- If you want to disable set to false
+    AddedEffectIntensity = 2.5,     -- 2.5 standard MUST USE FLOAT 0.0
     MinHealthToBeKnockedOut = 200,  -- Health at which there is a change to be knocked out
     KnockedOutTimeMin = 15,         -- How many seconds player will be down at a minimum from being knocked out
     KnockedOutTimeMax = 20,         -- How many seconds player will be down at a maximum from being knocked out
