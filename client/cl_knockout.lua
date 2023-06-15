@@ -82,7 +82,7 @@ CreateThread(function()
                         ShakeGameplayCam(Config.KnockedOut.AddedScreenEffect, Config.KnockedOut.AddedEffectIntensity)
                     end
                     knockedOut = true
-                    wait = math.random(Config.KnockedOut.KnockedOutTimeMin,Config.KnockedOut.KnockedOutTimeMax) * 1000
+                    wait = math.random(Config.KnockedOut.KnockedOutTimeMin,Config.KnockedOut.KnockedOutTimeMax) * 100
                     KnockedOut()
                 end
             end
