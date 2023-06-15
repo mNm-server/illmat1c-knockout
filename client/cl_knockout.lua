@@ -80,7 +80,7 @@ CreateThread(function()
                 if GetEntityHealth(PlayerPedId()) < Config.KnockedOut.MinHealthToBeKnockedOut and not knockedOut then
                     ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 2.5)
                     knockedOut = true
-                    wait = math.random(Config.KnockedOut.KnockedOutTimeMin,Config.KnockedOut.KnockedOutTimeMax)
+                    wait = math.random(Config.KnockedOut.KnockedOutTimeMin,Config.KnockedOut.KnockedOutTimeMax) * 100
                     KnockedOut()
                 end
             end
